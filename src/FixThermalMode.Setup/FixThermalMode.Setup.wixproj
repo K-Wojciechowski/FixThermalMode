@@ -1,14 +1,15 @@
-<Project Sdk="WixToolset.Sdk/4.0.4">
+﻿<Project Sdk="WixToolset.Sdk/4.0.4">
   <PropertyGroup>
     <HarvestFileSuppressUniqueIds>false</HarvestFileSuppressUniqueIds>
     <HarvestFileGenerateGuidsNow>true</HarvestFileGenerateGuidsNow>
     <PreBuildEvent>powershell $(MSBuildProjectDirectory)\..\..\Prepare-DistributionForSetup.ps1</PreBuildEvent>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Cultures />
+    <Cultures>;</Cultures>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Cultures>;</Cultures>
+  </PropertyGroup>
   <ItemGroup>
     <HarvestDirectory Include="../../publish">
       <ComponentGroupName>PublishedComponents</ComponentGroupName>
@@ -20,19 +21,16 @@
     </HarvestDirectory>
     <BindPath Include="../../publish" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="gpl-3.0.rtf" />
     <None Include="servicefilter.xsl" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="WixToolset.Heat" Version="4.0.4" />
     <PackageReference Include="WixToolset.Netfx.wixext" Version="4.0.4" />
     <PackageReference Include="WixToolset.UI.wixext" Version="4.0.4" />
     <PackageReference Include="WixToolset.Util.wixext" Version="4.0.4" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\FixThermalMode.Setup.GenerateAppSettingsAction\FixThermalMode.Setup.GenerateAppSettingsAction.csproj" />
   </ItemGroup>

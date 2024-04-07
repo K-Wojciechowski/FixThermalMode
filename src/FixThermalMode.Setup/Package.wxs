@@ -1,7 +1,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui" xmlns:netfx="http://wixtoolset.org/schemas/v4/wxs/netfx">
   <Package Name="FixThermalMode" Manufacturer="Krzysztof Wojciechowski" Version="1.0.0.0" UpgradeCode="b8b8d284-7c7d-40b9-9d32-b3da449f2e38">
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
-    <MediaTemplate EmbedCab="yes" />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
 
     <Feature Id="Main">
       <ComponentGroupRef Id="PublishedComponents" />
