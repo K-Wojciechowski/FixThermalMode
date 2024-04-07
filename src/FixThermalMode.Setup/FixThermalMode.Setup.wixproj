@@ -1,0 +1,33 @@
+<Project Sdk="WixToolset.Sdk/4.0.4">
+  <PropertyGroup>
+    <HarvestFileSuppressUniqueIds>false</HarvestFileSuppressUniqueIds>
+    <HarvestFileGenerateGuidsNow>true</HarvestFileGenerateGuidsNow>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>powershell $(MSBuildProjectDirectory)\..\..\Prepare-DistributionForSetup.ps1</PreBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <HarvestDirectory Include="../../publish">
+      <ComponentGroupName>PublishedComponents</ComponentGroupName>
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+      <SuppressCom>true</SuppressCom>
+      <SuppressRegistry>true</SuppressRegistry>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+      <Transforms>servicefilter.xsl</Transforms>
+    </HarvestDirectory>
+    <BindPath Include="../../publish" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gpl-3.0.rtf" />
+    <None Include="servicefilter.xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="4.0.4" />
+    <PackageReference Include="WixToolset.Netfx.wixext" Version="4.0.4" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.4" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="4.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FixThermalMode.Setup.GenerateAppSettingsAction\FixThermalMode.Setup.GenerateAppSettingsAction.csproj" />
+  </ItemGroup>
+</Project>

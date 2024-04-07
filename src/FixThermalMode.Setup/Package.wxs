@@ -1,0 +1,38 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui" xmlns:netfx="http://wixtoolset.org/schemas/v4/wxs/netfx">
+  <Package Name="FixThermalMode" Manufacturer="Krzysztof Wojciechowski" Version="1.0.0.0" UpgradeCode="b8b8d284-7c7d-40b9-9d32-b3da449f2e38">
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="PublishedComponents" />
+      <ComponentRef Id="ClientStartupShortcutComponent" />
+      <ComponentRef Id="ClientStartMenuShortcutComponent" />
+    </Feature>
+
+    <ui:WixUI
+      Id="WixUI_InstallDir"
+      InstallDirectory="INSTALLFOLDER" />
+
+    <WixVariable
+      Id="WixUILicenseRtf"
+      Value="gpl-3.0.rtf" />
+
+    <Binary Id="GenerateAppSettingsActionCA" SourceFile="$(var.FixThermalMode.Setup.GenerateAppSettingsAction.TargetDir)$(var.FixThermalMode.Setup.GenerateAppSettingsAction.TargetName).CA.dll" />
+    <CustomAction Id="DefineInstallFolderForGenerator" Property="GenerateAppSettingsAction" Value="INSTALLFOLDER=[INSTALLFOLDER]" />
+    <CustomAction Id="GenerateAppSettingsAction" BinaryRef="GenerateAppSettingsActionCA" DllEntry="GenerateAppSettingsAction" Execute="deferred" />
+
+    <SetProperty Id="WixShellExecTarget" Value="[INSTALLFOLDER]\client\FixThermalMode.Gui.exe" Before="LaunchAppCustomAction" Sequence="execute" />
+    <CustomAction Id="LaunchAppCustomAction" BinaryRef="Wix4UtilCA_$(sys.BUILDARCHSHORT)" DllEntry="WixShellExec" Execute="immediate" Return="check" />
+
+    <netfx:DotNetCompatibilityCheck Property="DOTNET_ASPNET_CHECK" RollForward="major" RuntimeType="aspnet" Platform="x64" Version="8.0.0" />
+    <netfx:DotNetCompatibilityCheck Property="DOTNET_DESKTOP_CHECK" RollForward="major" RuntimeType="desktop" Platform="x64" Version="8.0.0" />
+
+    <Launch Condition="DOTNET_ASPNET_CHECK = 0 AND DOTNET_DESKTOP_CHECK = 0" Message="This application requires .NET 8 with both the ASP.NET Core Runtime and the Windows Desktop Runtime. "/>
+
+    <InstallExecuteSequence>
+      <Custom Action="DefineInstallFolderForGenerator" Condition="REMOVE ~&lt;&gt; &quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" Before="GenerateAppSettingsAction" />
+      <Custom Action="GenerateAppSettingsAction" Before="InstallFinalize" Condition="REMOVE ~&lt;&gt; &quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" />
+      <Custom Action="LaunchAppCustomAction" After="InstallFinalize" />
+    </InstallExecuteSequence>
+  </Package>
+</Wix>

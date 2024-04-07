@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Settings.fs" />
+    <Compile Include="ApiResponse.fs" />
+    <Compile Include="ThermalModeApiClient.fs" />
+    <Content Include="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsHttp" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

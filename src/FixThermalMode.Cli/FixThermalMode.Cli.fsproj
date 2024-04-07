@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <Content Include="..\FixThermalMode.ClientCommon\appsettings.json" Link="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FixThermalMode.ClientCommon\FixThermalMode.ClientCommon.fsproj" />
+  </ItemGroup>
+
+</Project>

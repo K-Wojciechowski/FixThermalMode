@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <StandardDirectory Id="StartupFolder">
+      <Component Id="ClientStartupShortcutComponent" Guid="B45B9322-A38F-4CB6-9759-D8A7FD80980A">
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\FixThermalMode"
+          Name="Startup"
+          Value="yes"
+          Type="string"
+          KeyPath="yes" />
+
+        <Shortcut
+          Id="StartupShortcut"
+          Name="Fix Thermal Mode"
+          Target="[INSTALLFOLDER]\client\FixThermalMode.Gui.exe"
+          WorkingDirectory="INSTALLFOLDER"/>
+      </Component>
+    </StandardDirectory>
+
+    <StandardDirectory Id="StartMenuFolder">
+      <Component Id="ClientStartMenuShortcutComponent" Guid="BB31623B-67F6-44CB-BB7D-2C31DD619279">
+        <RegistryValue
+          Root="HKCU"
+          Key="Software\FixThermalMode"
+          Name="Installed"
+          Value="yes"
+          Type="string"
+          KeyPath="yes" />
+
+        <Shortcut
+          Id="StartMenuShortcut"
+          Name="Fix Thermal Mode"
+          Target="[INSTALLFOLDER]\client\FixThermalMode.Gui.exe"
+          WorkingDirectory="INSTALLFOLDER"/>
+      </Component>
+    </StandardDirectory>
+  </Fragment>
+</Wix>

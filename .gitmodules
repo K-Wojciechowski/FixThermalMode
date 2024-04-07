@@ -1,0 +1,3 @@
+[submodule "DellFanManagement"]
+	path = DellFanManagement
+	url = https://github.com/AaronKelley/DellFanManagement
