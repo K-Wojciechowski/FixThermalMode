@@ -24,7 +24,7 @@ try {
   }
 
   if (-not ((Test-Path publish\api\appsettings-template.json) -and (Test-Path publish\client\appsettings-template.json))) {
-    throw "Missing appsettings-templates.json files."
+    throw "Missing appsettings-template.json files."
   }
 } finally {
   Pop-Location

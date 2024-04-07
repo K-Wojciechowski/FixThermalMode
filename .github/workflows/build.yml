@@ -22,12 +22,17 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
+    - name: Get submodules
+      shell: pwsh
+      run: git submodule update --init
+
     - name: Build and publish FixThermalMode
       shell: pwsh
-      run: '.\Build-Distribution.ps1'
+      run: '.\Build-Code.ps1'
 
     - name: Build installer
-      run: 'dotnet build .\FixThermalMode.Setup.sln -c:Release -p:Platform=x64'
+      shell: pwsh
+      run: '.\Build-Setup.ps1'
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3

@@ -5,7 +5,7 @@ $ClientProjects = @("FixThermalMode.Cli", "FixThermalMode.CliVb", "FixThermalMod
 Push-Location $PSScriptRoot
 
 try {
-  dotnet clean
+  dotnet clean -v n FixThermalMode.sln
   dotnet build -v n FixThermalMode.sln
 
   if (Test-Path publish) {
