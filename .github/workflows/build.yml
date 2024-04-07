@@ -1,0 +1,36 @@
+name: Build FixThermalMode
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Build and publish FixThermalMode
+      shell: pwsh
+      run: '.\Build-Distribution.ps1'
+
+    - name: Build installer
+      run: 'dotnet build .\FixThermalMode.Setup.sln -c:Release -p:Platform=x64'
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MSI Package
+        path: src\FixThermalMode.Setup\bin\x64\Release\FixThermalMode.Setup.msi
