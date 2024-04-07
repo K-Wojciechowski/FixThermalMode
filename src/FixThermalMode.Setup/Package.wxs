@@ -15,7 +15,7 @@
 
     <WixVariable
       Id="WixUILicenseRtf"
-      Value="gpl-3.0.rtf" />
+      Value="gpl-3.0.rtf.bin" />
 
     <Binary Id="GenerateAppSettingsActionCA" SourceFile="$(var.FixThermalMode.Setup.GenerateAppSettingsAction.TargetDir)$(var.FixThermalMode.Setup.GenerateAppSettingsAction.TargetName).CA.dll" />
     <CustomAction Id="DefineInstallFolderForGenerator" Property="GenerateAppSettingsAction" Value="INSTALLFOLDER=[INSTALLFOLDER]" />
