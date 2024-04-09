@@ -35,9 +35,9 @@
     <Launch Condition="DOTNET_ASPNET_CHECK = 0 AND DOTNET_DESKTOP_CHECK = 0" Message="This application requires .NET 8 with both the ASP.NET Core Runtime and the Windows Desktop Runtime. "/>
 
     <InstallExecuteSequence>
-      <Custom Action="DefineInstallFolderForGenerator" Condition="REMOVE ~&lt;&gt; &quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" Before="GenerateAppSettingsAction" />
-      <Custom Action="GenerateAppSettingsAction" Before="InstallFinalize" Condition="REMOVE ~&lt;&gt; &quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" />
-      <Custom Action="LaunchAppCustomAction" After="InstallFinalize" />
+      <Custom Action="DefineInstallFolderForGenerator" Before="GenerateAppSettingsAction" Condition="NOT Installed AND NOT REMOVE" />
+      <Custom Action="GenerateAppSettingsAction" Before="InstallFinalize" Condition="NOT Installed AND NOT REMOVE" />
+      <Custom Action="LaunchAppCustomAction" After="InstallFinalize" Condition="NOT Installed AND NOT REMOVE" />
     </InstallExecuteSequence>
   </Package>
 </Wix>

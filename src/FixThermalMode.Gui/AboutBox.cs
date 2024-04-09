@@ -20,6 +20,8 @@ namespace FixThermalMode.Gui;
 public partial class AboutBox : Form {
   public AboutBox() {
     InitializeComponent();
+    var version = typeof(AboutBox).Assembly.GetName().Version?.ToString() ?? "0.0.0.0";
+    headingLabel.Text = $"Fix Thermal Mode v{version}";
   }
 
   private void okButton_Click(object sender, EventArgs e)

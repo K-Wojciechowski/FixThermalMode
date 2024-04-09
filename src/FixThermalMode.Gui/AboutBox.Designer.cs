@@ -26,7 +26,7 @@ partial class AboutBox {
   private void InitializeComponent() {
     var resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
     tableLayoutPanel1 = new TableLayoutPanel();
-    label1 = new Label();
+    headingLabel = new Label();
     label3 = new Label();
     label2 = new Label();
     label4 = new Label();
@@ -38,7 +38,7 @@ partial class AboutBox {
     // 
     tableLayoutPanel1.ColumnCount = 1;
     tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-    tableLayoutPanel1.Controls.Add(label1, 0, 0);
+    tableLayoutPanel1.Controls.Add(headingLabel, 0, 0);
     tableLayoutPanel1.Controls.Add(label3, 0, 3);
     tableLayoutPanel1.Controls.Add(label2, 0, 1);
     tableLayoutPanel1.Controls.Add(label4, 0, 2);
@@ -55,17 +55,17 @@ partial class AboutBox {
     tableLayoutPanel1.Size = new Size(478, 324);
     tableLayoutPanel1.TabIndex = 0;
     // 
-    // label1
+    // headingLabel
     // 
-    label1.Anchor = AnchorStyles.Top;
-    label1.AutoSize = true;
-    label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-    label1.Location = new Point(145, 8);
-    label1.Margin = new Padding(0, 8, 0, 0);
-    label1.Name = "label1";
-    label1.Size = new Size(188, 30);
-    label1.TabIndex = 0;
-    label1.Text = "Fix Thermal Mode";
+    headingLabel.Anchor = AnchorStyles.Top;
+    headingLabel.AutoSize = true;
+    headingLabel.Font = new Font("Segoe UI", 16F);
+    headingLabel.Location = new Point(105, 8);
+    headingLabel.Margin = new Padding(0, 8, 0, 0);
+    headingLabel.Name = "headingLabel";
+    headingLabel.Size = new Size(268, 30);
+    headingLabel.TabIndex = 0;
+    headingLabel.Text = "Fix Thermal Mode v0.0.0.0";
     // 
     // label3
     // 
@@ -82,7 +82,7 @@ partial class AboutBox {
     // 
     label2.Anchor = AnchorStyles.Top;
     label2.AutoSize = true;
-    label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+    label2.Font = new Font("Segoe UI", 10F);
     label2.Location = new Point(68, 38);
     label2.Name = "label2";
     label2.Size = new Size(341, 19);
@@ -92,7 +92,7 @@ partial class AboutBox {
     // label4
     // 
     label4.AutoSize = true;
-    label4.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+    label4.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
     label4.Location = new Point(8, 65);
     label4.Margin = new Padding(8, 8, 8, 16);
     label4.Name = "label4";
@@ -133,7 +133,7 @@ partial class AboutBox {
   #endregion
 
   private TableLayoutPanel tableLayoutPanel1;
-  private Label label1;
+  private Label headingLabel;
   private Label label2;
   private Label label3;
   private Label label4;
