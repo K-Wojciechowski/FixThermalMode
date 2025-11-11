@@ -1,6 +1,6 @@
 (*
  * FixThermalMode
- * Copyright © 2024 Krzysztof Wojciechowski
+ * Copyright © 2024-2025 Krzysztof Wojciechowski
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

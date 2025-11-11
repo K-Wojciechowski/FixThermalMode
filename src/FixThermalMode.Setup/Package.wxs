@@ -24,15 +24,15 @@
 
     <Binary Id="GenerateAppSettingsActionCA" SourceFile="$(var.FixThermalMode.Setup.GenerateAppSettingsAction.TargetDir)$(var.FixThermalMode.Setup.GenerateAppSettingsAction.TargetName).CA.dll" />
     <CustomAction Id="DefineInstallFolderForGenerator" Property="GenerateAppSettingsAction" Value="INSTALLFOLDER=[INSTALLFOLDER]" />
-    <CustomAction Id="GenerateAppSettingsAction" BinaryRef="GenerateAppSettingsActionCA" DllEntry="GenerateAppSettingsAction" Execute="deferred" />
+    <CustomAction Id="GenerateAppSettingsAction" BinaryRef="GenerateAppSettingsActionCA" DllEntry="GenerateAppSettingsAction" Execute="deferred" Impersonate="no" />
 
     <SetProperty Id="WixShellExecTarget" Value="[INSTALLFOLDER]\client\FixThermalMode.Gui.exe" Before="LaunchAppCustomAction" Sequence="execute" />
     <CustomAction Id="LaunchAppCustomAction" BinaryRef="Wix4UtilCA_$(sys.BUILDARCHSHORT)" DllEntry="WixShellExec" Execute="immediate" Return="check" />
 
-    <netfx:DotNetCompatibilityCheck Property="DOTNET_ASPNET_CHECK" RollForward="major" RuntimeType="aspnet" Platform="x64" Version="8.0.0" />
-    <netfx:DotNetCompatibilityCheck Property="DOTNET_DESKTOP_CHECK" RollForward="major" RuntimeType="desktop" Platform="x64" Version="8.0.0" />
+    <netfx:DotNetCompatibilityCheck Property="DOTNET_ASPNET_CHECK" RollForward="major" RuntimeType="aspnet" Platform="x64" Version="10.0.0" />
+    <netfx:DotNetCompatibilityCheck Property="DOTNET_DESKTOP_CHECK" RollForward="major" RuntimeType="desktop" Platform="x64" Version="10.0.0" />
 
-    <Launch Condition="DOTNET_ASPNET_CHECK = 0 AND DOTNET_DESKTOP_CHECK = 0" Message="This application requires .NET 8 with both the ASP.NET Core Runtime and the Windows Desktop Runtime. "/>
+    <Launch Condition="DOTNET_ASPNET_CHECK = 0 AND DOTNET_DESKTOP_CHECK = 0" Message="This application requires .NET 10 with both the ASP.NET Core Runtime and the Windows Desktop Runtime. "/>
 
     <InstallExecuteSequence>
       <Custom Action="DefineInstallFolderForGenerator" Before="GenerateAppSettingsAction" Condition="NOT Installed AND NOT REMOVE" />
